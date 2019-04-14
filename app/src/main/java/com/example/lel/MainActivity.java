@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 res = Integer.toString(firstvar - secondvar);
                 break;
-
             case 3:
                 res = Integer.toString(firstvar * secondvar);
                 break;
