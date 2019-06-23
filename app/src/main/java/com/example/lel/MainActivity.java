@@ -1,10 +1,16 @@
 package com.example.lel;
 
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.RawRes;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     String FIRSTVAR;
     String SECONDVAR;
     TextView window;
+
+    MediaPlayer mp;
 
     public void writeText(String input) {
 
@@ -81,54 +89,63 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playsound(R.raw.roblox);
                 writeText("1");
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playsound(R.raw.roblox);
                 writeText("2");
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playsound(R.raw.roblox);
                 writeText("3");
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playsound(R.raw.roblox);
                 writeText("4");
             }
         });
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playsound(R.raw.roblox);
                 writeText("5");
             }
         });
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playsound(R.raw.roblox);
                 writeText("6");
             }
         });
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playsound(R.raw.roblox);
                 writeText("7");
             }
         });
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playsound(R.raw.roblox);
                 writeText("8");
             }
         });
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playsound(R.raw.roblox);
                 writeText("9");
             }
         });
@@ -136,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playsound(R.raw.roblox);
                 writeText("0");
             }
         });
@@ -192,5 +210,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    private void playsound(@RawRes int res) {
+        if ((mp!=null) && (mp.isPlaying())) {
+            mp.stop();
+            mp.release();
+        }
+        mp = new MediaPlayer();
+        try {
+            Uri mediaPath = Uri.parse("android.resource://" + getPackageName() + "/" + res);
+            mp.setDataSource(getApplicationContext(), mediaPath);
+            mp.prepare();
+        } catch (IOException e) {
+            Log.d("ERROR", String.format("Media player fuckup: {}", e.getMessage()));
+        }
+        mp.start();
+    }
 }
